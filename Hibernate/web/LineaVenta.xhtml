@@ -1,0 +1,68 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+  <script   src="https://code.jquery.com/jquery-3.3.1.slim.min.js"   integrity="sha256-3edrmyuQ0w65f8gfBsqowzjJe2iM6n0nKciPUp8y+7E="   crossorigin="anonymous"></script>
+   
+    <h:head>
+        <title>Agregar Linea</title>
+        
+    </h:head>
+    
+    <h:body>
+        <ui:insert name="menu">
+            <b:navBar brand="DSE-HIBERNATE" brandHref="#" inverse="true">
+                <b:navbarLinks>
+                    <b:navLink value="Linea de venta" outcome="LineaVenta"></b:navLink>
+                    <b:navLink value="Ver entradas" outcome="Ventas"></b:navLink>
+                    
+                </b:navbarLinks>
+
+            </b:navBar>
+        </ui:insert>
+
+        <h3 class="text-center text-info" >Linea de Venta </h3>
+        <br></br>
+         <div class="container border w-25 center-block" >
+                     <br></br>
+        <h:form>
+            <h:panelGrid class="" columns="2">
+                <h:outputLabel  for="idVenta" value="ID: " /><h:inputText class="form-control" id="idVenta" value="#{lineaBean.lineasDeVenta.idLinea}"/>
+                <h:outputLabel  for="linea" value="Nombre linea: " /> <h:inputText class="form-control"  id="descripcion" value="#{lineaBean.lineasDeVenta.linea}"/>
+            </h:panelGrid>
+            <br></br>
+            <h:panelGrid columns="4">
+                <h:commandButton class="btn btn-success"  value="Guardar" action="#{lineaBean.addLinea()}" />
+                <h:commandButton class="btn btn-info"  value="Consultar Linea" action="#{lineaBean.returnLineaId()}" />       
+                <h:commandButton class="btn btn-danger"  value="Eliminar" action="#{lineaBean.deleteLinea()}" />   
+                <h:commandButton  class="btn btn-primary" value="Actualizar" action="#{lineaBean.updateLineaVenta()}" />
+               
+            </h:panelGrid>
+
+            <h:messages infoStyle="color:green" globalOnly="true"/>
+        </h:form>  
+           </div>
+       <br/> 
+       <div class="container w-50" >
+       <h:dataTable class="table table-hover table-bordered" var="list" value="#{lineaBean.lineaDeVenta}" >
+             <h:column>
+            <f:facet name="header">
+                <h:outputText value="ID"/>
+            </f:facet>
+                 <h:outputText value="#{list.idLinea}"/>
+            </h:column>
+            <h:column> 
+             <f:facet name="header">
+                <h:outputText value="Nombre de Linea"/>
+            </f:facet>
+                <h:outputText value="#{list.linea}"/>
+             </h:column>  
+            
+        </h:dataTable>  
+           </div>
+    </h:body>
+</html>
+
